@@ -1,3 +1,12 @@
 .DS_Store
-Ratchetio.php
+thumbs.db
+*.class
+*.pyc
+*.pyo
+*.swp
+*.swo
+.project
+.settings
 .idea/*
+composer.lock
+vendor/*
