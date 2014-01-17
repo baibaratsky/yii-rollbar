@@ -16,14 +16,11 @@ Installation
 
    b. Download [rollbar.php](https://raw.github.com/rollbar/rollbar-php/master/rollbar.php)
    and put it somewhere you can access, then add the following code at your application's entry point:
-
    ```php
    require_once 'rollbar.php';
    ```
 
-
 2. Add `rollbar` component to the `main.php` config:
-
     ```php
     // ...
     'components' => array(
@@ -36,13 +33,11 @@ Installation
     ```
 
 3. Adjust `main.php` config to preload the component:
-
     ```php
     'preload' => array('log', 'rollbar'),
     ```
 
 4. Set `RollbarErrorHandler` as error handler:
-
     ```php
     'components' => array(
         // ...
@@ -66,3 +61,25 @@ Installation
     ```php
     'rootAlias' => 'root',
     ```
+
+
+Rollbar Log Route
+-----------------
+You may want to collect your logs produced by `Yii::log()` in Rollbar. Put the following code in your config and enjoy:
+```php
+'components' => array(
+    // ...
+    'log' => array(
+        // ...
+        'routes' => array(
+            array(
+                'class' => 'application.vendor.baibaratsky.yii-rollbar.RollbarLogRoute',
+                'levels' => 'error, warning, info',
+
+                // You may specify the name of the Rollbar Yii Component ('rollbar' by default)
+                'rollbarComponentName' => 'rollbar',
+            ),
+        ),
+    ),
+),
+```
