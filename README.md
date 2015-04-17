@@ -1,5 +1,9 @@
 Rollbar Yii Component
 =====================
+[![GitHub release](https://img.shields.io/github/release/baibaratsky/yii-rollbar.svg)](https://github.com/baibaratsky/yii-rollbar/releases)
+[![Dependency Status](https://www.versioneye.com/user/projects/55315cb410e7141211000fc8/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55315cb410e7141211000fc8)
+[![Packagist](https://img.shields.io/packagist/v/baibaratsky/yii-rollbar.svg)](https://packagist.org/packages/baibaratsky/yii-rollbar)
+[![Packagist](https://img.shields.io/packagist/dt/baibaratsky/yii-rollbar.svg)](https://packagist.org/packages/baibaratsky/yii-rollbar)
 
 Rollbar Yii Component is the way to integrate [Rollbar](http://rollbar.com/) service with your Yii application.
 Rollbar aggregates and analyzes your application errors and deploys.
