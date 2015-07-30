@@ -9,7 +9,7 @@ class RollbarComponent extends CApplicationComponent
     public $batchSize;
     public $timeout;
     public $logger;
-    public $maxErrno;
+    public $includedErrno;
     public $baseApiUrl;
     public $rootAlias = 'application';
 
@@ -24,7 +24,7 @@ class RollbarComponent extends CApplicationComponent
                 'batch_size' => $this->batchSize,
                 'timeout' => $this->timeout,
                 'logger' => $this->logger,
-                'max_errno' => $this->maxErrno,
+                'included_errno' => $this->includedErrno,
                 'base_api_url' => $this->baseApiUrl,
                 'root' => !empty($this->rootAlias) ? Yii::getPathOfAlias($this->rootAlias) : '',
             ),
