@@ -12,6 +12,7 @@ class RollbarComponent extends CApplicationComponent
     public $includedErrno;
     public $baseApiUrl;
     public $rootAlias = 'application';
+    public $scrubFields = ['passwd', 'password', 'secret', 'auth_token', 'YII_CSRF_TOKEN'];
 
     public function init()
     {
@@ -27,6 +28,7 @@ class RollbarComponent extends CApplicationComponent
                 'included_errno' => $this->includedErrno,
                 'base_api_url' => $this->baseApiUrl,
                 'root' => !empty($this->rootAlias) ? Yii::getPathOfAlias($this->rootAlias) : '',
+                'scrub_fields' => $this->scrubFields,
             ),
             false,
             false);
