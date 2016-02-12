@@ -5,6 +5,8 @@ class RollbarComponent extends CApplicationComponent
     public $accessToken;
     public $environment;
     public $branch;
+    public $code_version;
+    public $host;
     public $batched;
     public $batchSize;
     public $timeout;
@@ -21,6 +23,8 @@ class RollbarComponent extends CApplicationComponent
                 'access_token' => $this->accessToken,
                 'environment' => $this->environment,
                 'branch' => $this->branch,
+                'code_version' => $this->code_version,
+                'host' => $this->host,
                 'batched' => $this->batched,
                 'batch_size' => $this->batchSize,
                 'timeout' => $this->timeout,
