@@ -34,7 +34,7 @@ Installation
         // ...
         'rollbar' => array(
             'class' => 'application.vendor.baibaratsky.yii-rollbar.RollbarComponent', // adjust path if needed
-            'accessToken' => 'your_serverside_rollbar_token',
+            'access_token' => 'your_serverside_rollbar_token',
         ),
     ),
     ```
@@ -55,8 +55,9 @@ Installation
     ),
     ```
 
-    You can also pass some additional rollbar options in the component config:
-    `environment`, `branch`, `maxErrno`, `baseApiUrl`, etc.
+    You can also pass some additional rollbar options in the component config, refer to the 
+    [Rollbar documentation](https://rollbar.com/docs/notifier/rollbar-php/#configuration-reference)
+    for all available options.
 
     A good idea is to specify `environment` as:
 
@@ -66,7 +67,7 @@ Installation
 
     You can specify alias of your project root directory for linking stack traces (`application` by default):
     ```php
-    'rootAlias' => 'root',
+    'root' => 'root',
     ```
 
 

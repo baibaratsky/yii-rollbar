@@ -2,41 +2,57 @@
 
 class RollbarComponent extends CApplicationComponent
 {
-    public $accessToken;
-    public $environment;
-    public $branch;
-    public $code_version;
-    public $host;
-    public $batched;
-    public $batchSize;
-    public $timeout;
-    public $logger;
-    public $includedErrno;
-    public $baseApiUrl;
-    public $rootAlias = 'application';
-    public $scrubFields = ['passwd', 'password', 'secret', 'auth_token', 'YII_CSRF_TOKEN'];
+    private $config = [];
+
+    public function __construct()
+    {
+        $this->setDefaults();
+    }
 
     public function init()
     {
-        Rollbar::init(
-            array(
-                'access_token' => $this->accessToken,
-                'environment' => $this->environment,
-                'branch' => $this->branch,
-                'code_version' => $this->code_version,
-                'host' => $this->host,
-                'batched' => $this->batched,
-                'batch_size' => $this->batchSize,
-                'timeout' => $this->timeout,
-                'logger' => $this->logger,
-                'included_errno' => $this->includedErrno,
-                'base_api_url' => $this->baseApiUrl,
-                'root' => !empty($this->rootAlias) ? Yii::getPathOfAlias($this->rootAlias) : '',
-                'scrub_fields' => $this->scrubFields,
-            ),
-            false,
-            false);
-
+        Rollbar::init($this->config, false, false);
         parent::init();
+    }
+
+    public function __set($key, $value)
+    {
+      $key = $this->normalizeWithCompatibility($key);
+      
+      if ($key === 'root') {
+          $value = Yii::getPathOfAlias( $value ) ? Yii::getPathOfAlias( $value ) : $value;
+      }
+      $this->config[$key] = $value;
+    }
+
+    protected function setDefaults()
+    {
+        $this->root = Yii::getPathOfAlias('application');
+        $this->scrub_fields = ['passwd', 'password', 'secret', 'auth_token', 'YII_CSRF_TOKEN'];
+    }
+
+    /**
+     * Converts old public properties to new key names.
+     */
+    protected function normalizeWithCompatibility($key)
+    {
+        if ($key === 'rootAlias') {
+            $key = 'root';
+        }
+        $key = $this->underscore($key);
+    }
+
+    /**
+     * Converts any "CamelCased" into an "underscored_word".
+     *
+     * Taken from 
+     * https://github.com/yiisoft/yii2/blob/6da1ec6fb2b6367cb30d8c581575d09f0072812d/framework/helpers/BaseInflector.php#L411
+     * 
+     * @param string $words the word(s) to underscore
+     * @return string
+     */
+    private function underscore($words)
+    {
+        return strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $words));
     }
 }
