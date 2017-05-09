@@ -22,7 +22,7 @@ class RollbarComponent extends CApplicationComponent
         $key = $this->normalizeWithCompatibility($key);
 
         if ($key === 'root') {
-          $value = Yii::getPathOfAlias( $value ) ? Yii::getPathOfAlias( $value ) : $value;
+            $value = Yii::getPathOfAlias($value) ? Yii::getPathOfAlias($value) : $value;
         }
         $this->config[$key] = $value;
     }
