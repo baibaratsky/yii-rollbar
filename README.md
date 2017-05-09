@@ -14,7 +14,7 @@ The code of this project has been forked from
 Installation
 ------------
 
-0. The preferred way to install this component is through [composer](http://getcomposer.org/download/). 
+1. The preferred way to install this component is through [composer](http://getcomposer.org/download/). 
    
     To install, either run
     ```
@@ -27,7 +27,7 @@ Installation
     to the `require` section of your `composer.json` file.
 
 
-0. Add `rollbar` component to the `main.php` config:
+1. Add `rollbar` component to the `main.php` config:
     ```php
     // ...
     'components' => array(
@@ -39,12 +39,12 @@ Installation
     ),
     ```
 
-0. Adjust `main.php` config to preload the component:
+1. Adjust `main.php` config to preload the component:
     ```php
     'preload' => array('log', 'rollbar'),
     ```
 
-0. Set `RollbarErrorHandler` as error handler:
+1. Set `RollbarErrorHandler` as error handler:
     ```php
     'components' => array(
         // ...
