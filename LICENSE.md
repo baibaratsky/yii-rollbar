@@ -1,7 +1,7 @@
 Rollbar Yii Extension is free software. It is released under
 the terms of the following BSD License.
 
-Copyright © 2013-2015 by Andrei Baibaratsky, Kir Shatrov, Serge
+Copyright © 2013-2017 by Andrei Baibaratsky, Kir Shatrov, Serge
 Bezborodov, Alexander Makarov. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
