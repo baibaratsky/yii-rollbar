@@ -1,11 +1,14 @@
 <?php
 
+use Rollbar\Rollbar;
+use Rollbar\Payload\Level;
+
 class RollbarErrorHandler extends CErrorHandler
 {
     protected function handleException($exception)
     {
         if (!($exception instanceof CHttpException && $exception->statusCode == 404)) {
-            Rollbar::report_exception($exception);
+            Rollbar::log(Level::error(), $exception);
         }
 
         parent::handleException($exception);
@@ -14,7 +17,7 @@ class RollbarErrorHandler extends CErrorHandler
 
     protected function handleError($event)
     {
-        Rollbar::report_php_error($event->code, $event->message, $event->file, $event->line);
+        Rollbar::errorHandler($event->code, $event->message, $event->file, $event->line);
 
         parent::handleError($event);
     }

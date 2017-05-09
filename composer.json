@@ -21,6 +21,6 @@
     ],
     "require": {
         "php": ">=5.3",
-        "rollbar/rollbar": "~0.18.0"
+        "rollbar/rollbar": "~1.0.0"
     }
 }

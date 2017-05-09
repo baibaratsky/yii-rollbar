@@ -1,5 +1,7 @@
 <?php
 
+use Rollbar\Rollbar;
+
 class RollbarComponent extends CApplicationComponent
 {
     private $config = [];
@@ -17,12 +19,12 @@ class RollbarComponent extends CApplicationComponent
 
     public function __set($key, $value)
     {
-      $key = $this->normalizeWithCompatibility($key);
-      
-      if ($key === 'root') {
+        $key = $this->normalizeWithCompatibility($key);
+
+        if ($key === 'root') {
           $value = Yii::getPathOfAlias( $value ) ? Yii::getPathOfAlias( $value ) : $value;
-      }
-      $this->config[$key] = $value;
+        }
+        $this->config[$key] = $value;
     }
 
     protected function setDefaults()
@@ -40,14 +42,16 @@ class RollbarComponent extends CApplicationComponent
             $key = 'root';
         }
         $key = $this->underscore($key);
+
+        return $key;
     }
 
     /**
      * Converts any "CamelCased" into an "underscored_word".
      *
-     * Taken from 
+     * Taken from
      * https://github.com/yiisoft/yii2/blob/6da1ec6fb2b6367cb30d8c581575d09f0072812d/framework/helpers/BaseInflector.php#L411
-     * 
+     *
      * @param string $words the word(s) to underscore
      * @return string
      */

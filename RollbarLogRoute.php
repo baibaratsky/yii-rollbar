@@ -1,5 +1,8 @@
 <?php
 
+use Rollbar\Rollbar;
+use Rollbar\Payload\Level;
+
 class RollbarLogRoute extends CLogRoute
 {
     public $rollbarComponentName = 'rollbar';
@@ -9,9 +12,6 @@ class RollbarLogRoute extends CLogRoute
         if (Yii::app()->getComponent($this->rollbarComponentName) === null) {
             throw new CException('Rollbar component is not loaded.');
         }
-        if (!class_exists('Rollbar', false)) {
-            throw new CException('Rollbar class is not loaded.');
-        }
     }
 
     protected function processLogs($logs)
@@ -19,7 +19,7 @@ class RollbarLogRoute extends CLogRoute
         foreach ($logs as $log) {
             // Exclude records by the exceptions handler. RollbarErrorHandler takes care of them.
             if (strncmp($log[2], 'exception', 9) !== 0) {
-                Rollbar::report_message($log[0], $this->correspondingLevel($log[1]));
+                Rollbar::log(Level::fromName($this->correspondingLevel($log[1])), $log[0]);
             }
         }
     }
