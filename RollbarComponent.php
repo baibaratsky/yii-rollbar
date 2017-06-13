@@ -31,6 +31,12 @@ class RollbarComponent extends CApplicationComponent
     {
         $this->root = Yii::getPathOfAlias('application');
         $this->scrub_fields = array('passwd', 'password', 'secret', 'auth_token', 'YII_CSRF_TOKEN');
+        $this->checkIgnore = function ($isUncaught, $exception, $payload) {
+            if ($exception instanceof CHttpException && $exception->statusCode == 404) {
+                return true;
+            }
+            return false;
+        };
     }
 
     /**
@@ -41,7 +47,9 @@ class RollbarComponent extends CApplicationComponent
         if ($key === 'rootAlias') {
             $key = 'root';
         }
-        $key = $this->underscore($key);
+        if ($key !== 'checkIgnore') {
+            $key = $this->underscore($key);
+        }
 
         return $key;
     }
