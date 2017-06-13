@@ -18,11 +18,11 @@ Installation
    
     To install, either run
     ```
-    $ php composer.phar require baibaratsky/yii-rollbar:2.2.*
+    $ php composer.phar require baibaratsky/yii-rollbar:2.3.*
     ```
     or add
     ```
-    "baibaratsky/yii-rollbar": "2.2.*"
+    "baibaratsky/yii-rollbar": "2.3.*"
     ```
     to the `require` section of your `composer.json` file.
 
