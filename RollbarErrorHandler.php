@@ -7,7 +7,7 @@ class RollbarErrorHandler extends CErrorHandler
 {
     protected function handleException($exception)
     {
-        Rollbar::log(Level::error(), $exception);
+        Rollbar::log(Level::ERROR, $exception);
 
         parent::handleException($exception);
     }
